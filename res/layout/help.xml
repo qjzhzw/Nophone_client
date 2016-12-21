@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="版本及更新内容"
+            android:textStyle="bold"
+            android:textSize="30dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="版本号：v2.8.6\n\n更新内容：\n1.增加了课程表模块\n2.增加了商店模块\n3.用户界面的保存和取消保存按钮居中\n4.改变了APP开场效果的几张图片的分辨率，并增加了合影\n5.更改了几张初始图片\n6.增加了树的第三阶段（0-10为Lv1，11-100为Lv2，101-500为Lv3）"
+            android:id="@+id/textView_help_update"
+            android:background="@null"
+            android:textColor="#ff2399a3"
+            android:textSize="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"/>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#ff2399a3"
+            />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="APP介绍"
+            android:textStyle="bold"
+            android:textSize="30dp"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=
+                    "采用奖励的方式遏制上课玩手机现象。核心特点为：根据学生上课时间不操作手机的时间兑换成该学生校园周围店铺的奖品。\n主要分五大板块。\n\n板块1：树板块\n以树为主，树左侧有商品栏，右侧有好友栏。\n树界面，有浇水，采花按键。\n板块1界面之上，若为当天第一次打开，覆盖有一页推送内容，有X取消键；\n\n板块2:设置板块\n可设置学习模式\n\n板块3：课程表板块\n有导入课表按键-若未导入课表，放置课表处以空白状态-点击导入课表，跳到一个新的独立的界面，登入教务处账户密码的界面。\n\n板块4：市场板块\n奖品的呈现，以及奖品的详细信息，兑换量，兑换金额。\n\n板块5:个人信息板块\n"
+            android:id="@+id/textView_help"
+            android:background="@null"
+            android:textColor="#ff2399a3"
+            android:textSize="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"/>
+</LinearLayout>
+</ScrollView>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/goods_container"
+              android:background="#ffffff"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="@drawable/huangmenji"
+                android:id="@+id/goods_show_big"
+                />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+    <TextView
+            android:id="@+id/goods_name"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:text="商品名称"
+            android:textSize="25dp"
+            android:paddingLeft="30dp"
+            android:gravity="center_vertical"
+            />
+        <TextView
+
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/gold_number_textview2"
+                android:text="200"
+                android:textColor="#000"/>
+        <ImageView
+                android:layout_gravity="center_vertical"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/market_gold"
+                />
+    </LinearLayout>
+    <TextView
+            android:layout_width="match_parent"
+            android:background="#ff2399a3"
+            android:layout_height="1dp"/>
+        <TextView
+                android:id="@+id/store_"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="店铺地址：江南大学北区商业街二楼"
+                android:textSize="20dp"
+                android:paddingLeft="30dp"
+                android:gravity="center_vertical"
+                />
+    <TextView
+            android:layout_width="match_parent"
+            android:background="#ff2399a3"
+            android:layout_height="1dp"/>
+    <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="奖品说明：免费赠送一杯什么奶茶"
+            android:textSize="20dp"
+            android:paddingLeft="30dp"
+            android:gravity="center_vertical"
+            />
+    <TextView
+            android:layout_width="match_parent"
+            android:background="#ff2399a3"
+            android:layout_height="1dp"/>
+
+    </LinearLayout>
+</FrameLayout>

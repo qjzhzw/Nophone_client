@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+             android:background="#ffffffff">
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:background="#00000000">
+
+
+        <RelativeLayout
+                android:id="@+id/content_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="700dp"
+                android:orientation="vertical"
+                android:background="@null"
+                android:layout_above="@+id/bottom_tab" android:layout_alignParentLeft="true"
+                android:layout_marginTop="45dp">
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:id="@+id/top_tab" android:background="@drawable/app_head">
+    <TextView
+            android:id="@+id/all_title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="森林树"
+            android:textSize="28dp"
+            android:gravity="center"
+            android:textColor="#ffffffff"
+            android:autoText="false"/>
+    </RelativeLayout>
+    <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/bottom_tab"
+            android:orientation="horizontal"
+            android:background="#ff393736">
+        <RelativeLayout
+
+                android:id="@+id/tab_tree"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0" >
+
+            <ImageView
+                    android:id="@+id/tab_tree_pic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/tree"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@null"/>
+
+            <TextView
+                    android:id="@+id/tab_tree_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tab_tree_pic"
+                    android:layout_centerHorizontal="true"
+                    android:text="Tree"
+                    android:textColor="#ff2b2b2b"
+                    android:textSize="12sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+
+                android:id="@+id/tab_setting"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0" >
+
+            <ImageView
+                    android:id="@+id/tab_setting_pic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/setting"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@null"/>
+
+            <TextView
+                    android:id="@+id/tab_setting_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tab_setting_pic"
+                    android:layout_centerHorizontal="true"
+                    android:text="setting"
+                    android:scaleType="centerCrop"
+                    android:textColor="#ff2b2b2b"
+                    android:textSize="12sp" />
+        </RelativeLayout>
+        <RelativeLayout
+                android:id="@+id/tab_courses"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0" >
+
+            <ImageView
+                    android:id="@+id/tab_courses_pic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/course"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@null"/>
+
+            <TextView
+                    android:id="@+id/tab_courses_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tab_courses_pic"
+                    android:layout_centerHorizontal="true"
+                    android:text="setting"
+                    android:textColor="#ff2b2b2b"
+                    android:textSize="12sp" />
+        </RelativeLayout>
+        <RelativeLayout
+                android:id="@+id/tab_market"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0" >
+
+            <ImageView
+                    android:id="@+id/tab_market_pic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/market"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@null"/>
+
+            <TextView
+                    android:id="@+id/tab_market_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tab_market_pic"
+                    android:layout_centerHorizontal="true"
+                    android:text="setting"
+                    android:textColor="#ff2b2b2b"
+                    android:textSize="12sp" />
+        </RelativeLayout>
+        <RelativeLayout
+                android:id="@+id/tab_user"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0" >
+            <ImageView
+                    android:id="@+id/tab_user_pic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/user"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@null"/>
+            <TextView
+                    android:id="@+id/tab_user_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tab_user_pic"
+                    android:layout_centerHorizontal="true"
+                    android:text="setting"
+                    android:textColor="#ff2b2b2b"
+                    android:textSize="12sp" />
+        </RelativeLayout>
+    </LinearLayout>
+        <!--内容-->
+    </RelativeLayout>
+
+</FrameLayout>

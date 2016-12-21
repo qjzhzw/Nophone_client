@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_goods_Relayout"
+                android:background="#ffffffff">
+        <ImageView
+                android:id="@+id/goods_item_gold"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/market_gold"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                />
+        <TextView
+                android:id="@+id/goods_item_goldnumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="200"
+                android:textColor="#000"
+                android:layout_toLeftOf="@id/goods_item_gold"
+                android:layout_centerVertical="true"
+                />
+    <ImageView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/goods_imagine"
+            android:layout_width="50dp"
+            android:layout_height="50dp" android:src="@drawable/huangmenji"/>
+    <TextView
+            android:layout_marginTop="4dp"
+            android:id="@+id/goods_item_tilte"
+            android:layout_toRightOf="@id/goods_imagine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="  商品名称"
+            android:textColor="#ff6b6868"
+            android:layout_toLeftOf="@id/goods_item_goldnumber"
+            android:textSize="15sp"/>
+
+    <TextView
+
+        android:id="@+id/goods_item_location"
+            android:layout_marginTop="3dp"
+            android:layout_below="@id/goods_item_tilte"
+            android:layout_toRightOf="@id/goods_imagine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/goods_item_goldnumber"
+            android:text="    无锡市滨湖区江南大学北区商业街二楼 仙芋世家"
+            android:textSize="10sp"
+            android:textColor="#ff6b6868"/>
+
+
+
+
+
+</RelativeLayout>

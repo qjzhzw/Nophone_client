@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">上课没疯</string>
+    <string name="water_success">浇水成功，您获得了0.5经验值</string>
+    <string name="bag">这里是包</string>
+    <string name="friend">这里是朋友</string>
+    <string name="hand">这里是手</string>
+    <string name="study_mode">您的“学习模式”将在</string>
+    <string name="start">开始</string>
+    <string name="finish">结束</string>
+    <string name="cancel_setting">已取消设置“学习模式”</string>
+    <string name="save_success">保存成功</string>
+    <string name="login_success">登陆成功</string>
+    <string name="register_success">注册成功</string>
+    <string name="begin_and_finish_time">请选择开始和结束时间</string>
+    <string name="time_length">请选择“学习模式”的时间长度</string>
+    <string name="finish_still">离学习模式结束还有</string>
+    <string name="OK">确定</string>
+    <string name="cancel">取消</string>
+    <string name="my_nickname">我的昵称</string>
+    <string name="no_motto">您尚未设置签名</string>
+    <string name="no_identfication">请输入账号</string>
+    <string name="no_number">请输入学号</string>
+    <string name="no_password">请输入密码</string>
+    <string name="no_password_again">请输入确认密码</string>
+    <string name="error_password">密码不一致</string>
+    <string name="no_vertification">请输入验证码</string>
+    <string name="error_vertification">验证码输入错误</string>
+    <string name="your_vertification">你获取的验证码为</string>
+    <string name="tree_title">森林树</string>
+    <string name="course_title">课程表</string>
+    <string name="user_title">用户</string>
+    <string name="market_title">市场</string>
+    <string name="setting_title">设置</string>
+    <string name="exit_app">再按一次退出程序</string>
+
+    <string-array name="constellation">
+        <item>白羊座</item>
+        <item>金牛座</item>
+        <item>双子座</item>
+        <item>巨蟹座</item>
+        <item>狮子座</item>
+        <item>处女座</item>
+        <item>天秤座</item>
+        <item>天蝎座</item>
+        <item>射手座</item>
+        <item>摩羯座</item>
+        <item>水瓶座</item>
+        <item>双鱼座</item>
+    </string-array>
+
+</resources>

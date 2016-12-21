@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.ForestAnimals.nophone"
+          android:versionCode="2"
+          android:versionName="2.8.6">
+    <uses-sdk android:minSdkVersion="14"/>
+    <application android:label="@string/app_name"
+                 android:theme="@android:style/Theme.Holo.Light.NoActionBar"
+                 android:icon="@drawable/icon"
+            >
+        <activity android:name=".welcome"
+                  android:label="@string/app_name"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".goods.goodsActivity">
+
+        </activity>
+
+        <activity android:name=".test"
+                  android:label="@string/app_name"
+                  android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".login_and_register.login"
+                  android:label="@string/app_name"
+                  android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".login_and_register.register"
+                  android:label="@string/app_name"
+                  android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".login_and_register.register_information"
+                  android:label="@string/app_name"
+                  android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".tree.tree_news"
+                  android:label="@string/app_name"
+                  android:theme="@android:style/Theme.Holo.Light.Dialog"
+                  android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".course.course_table"
+                  android:label="@string/app_name"
+                  android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".help"
+                  android:label="@string/app_name"
+                  android:theme="@android:style/Theme.Holo.Light.Dialog"
+                  android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name="com.ForestAnimals.nophone.MainActivity"
+                  android:label="@string/app_name"
+                  android:screenOrientation="portrait">
+        </activity>
+
+        <AlertDialog android:name=".shape.DoubleTimePickerDialog"
+                     android:label="@string/app_name"
+                     android:theme="@style/myDialogTheme">
+        </AlertDialog>
+
+        <AlertDialog android:name=".shape.TimePickerDialog_setting"
+                     android:label="@string/app_name"
+                     android:theme="@style/myDialogTheme">
+        </AlertDialog>
+
+        <service android:name=".Service.MusicService"
+                 android:enabled="true">
+        </service>
+
+        <service android:name=".phone_lock.AlarmReceiver_silent"
+                  android:label="@string/app_name">
+        </service>
+
+        <service
+                android:name=".phone_lock.AlarmReceiver_normal"
+                android:label="@string/app_name"/>
+
+        <receiver android:name=".phone_lock.AdminReceiver"
+                  android:label="@string/app_name"
+                  android:description="@string/app_name"
+                  android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data android:name="android.app.device_admin"
+                       android:resource="@xml/lock_screen" />
+            <intent-filter>
+                <action
+                        android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+</manifest>
