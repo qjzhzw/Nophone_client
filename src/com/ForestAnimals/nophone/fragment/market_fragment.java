@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.ForestAnimals.nophone.R;
-import com.ForestAnimals.nophone.Service.FileService;
+import com.ForestAnimals.nophone.util.FileService;
 import com.ForestAnimals.nophone.goods.goodsListFragment;
 
 import java.io.InputStream;

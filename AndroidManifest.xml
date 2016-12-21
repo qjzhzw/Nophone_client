@@ -72,7 +72,7 @@
                      android:theme="@style/myDialogTheme">
         </AlertDialog>
 
-        <service android:name=".Service.MusicService"
+        <service android:name=".util.MusicService"
                  android:enabled="true">
         </service>
 

@@ -11,8 +11,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import com.ForestAnimals.nophone.MainActivity;
 import com.ForestAnimals.nophone.R;
-import com.ForestAnimals.nophone.Service.FileService;
-import com.ForestAnimals.nophone.Service.MusicService;
+import com.ForestAnimals.nophone.util.FileService;
+import com.ForestAnimals.nophone.util.MusicService;
 import com.ForestAnimals.nophone.help;
 
 import java.io.InputStream;
@@ -47,10 +47,10 @@ public class login extends Activity {
         initUI();
         read_login();
 
-        Intent intentmusic = new Intent(getBaseContext(),MusicService.class);
-        intentmusic.putExtra("isPlaying", true);
-        startService(intentmusic);
-        //播放背景音乐
+//        Intent intentmusic = new Intent(getBaseContext(),MusicService.class);
+//        intentmusic.putExtra("isPlaying", true);
+//        startService(intentmusic);
+//        //播放背景音乐
 
     }
 

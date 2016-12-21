@@ -10,7 +10,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.*;
 import com.ForestAnimals.nophone.R;
-import com.ForestAnimals.nophone.Service.FileService;
+import com.ForestAnimals.nophone.util.FileService;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
