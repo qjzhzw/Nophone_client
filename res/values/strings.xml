@@ -11,7 +11,6 @@
     <string name="cancel_setting">已取消设置“学习模式”</string>
     <string name="save_success">保存成功</string>
     <string name="login_success">登陆成功</string>
-    <string name="register_success">注册成功</string>
     <string name="begin_and_finish_time">请选择开始和结束时间</string>
     <string name="time_length">请选择“学习模式”的时间长度</string>
     <string name="finish_still">离学习模式结束还有</string>
@@ -27,6 +26,9 @@
     <string name="no_vertification">请输入验证码</string>
     <string name="error_vertification">验证码输入错误</string>
     <string name="your_vertification">你获取的验证码为</string>
+    <string name="register_success">注册成功，请完善资料</string>
+    <string name="register_used">该账号已被注册，请重新输入</string>
+    <string name="check_Internet">请检查网络连接</string>
     <string name="tree_title">森林树</string>
     <string name="course_title">课程表</string>
     <string name="user_title">用户</string>

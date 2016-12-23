@@ -36,7 +36,6 @@ public class register extends Activity {
     int[] n = new int[6];
     String n_str = "";
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,10 +65,9 @@ public class register extends Activity {
 
     }
 
-    private void connect() {
-        String result = "";
-
-        String url = "http://taswy.tunnel.qydev.com/information/send_information";
+    private String[] connect() {
+        String url = "http://qjzhzw.tunnel.qydev.com/information/send_information/";
+        //url最后那个‘/’不能少！
 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("identification", editText_register_identification.getText().toString()));
@@ -77,6 +75,13 @@ public class register extends Activity {
 
         MyThread myThread = new MyThread(params, url);
         myThread.start();
+        while (!myThread.isDone()) {
+        }
+
+        String[] parse_key = {"status"};
+        //需要解析的关键词
+
+        return myThread.parseJson(parse_key);
     }
 
 
@@ -84,6 +89,7 @@ public class register extends Activity {
         @Override
         public void onClick(View view) {
             Button button = (Button) view;
+            String result[];
             Intent intent = new Intent();
             switch (button.getId()) {
                 case R.id.button_register_nextstep:
@@ -112,9 +118,19 @@ public class register extends Activity {
                         Toast.makeText(register.this, getString(R.string.error_vertification), Toast.LENGTH_SHORT).show();
                         break;
                     } else {
-                        intent.setClass(register.this, register_information.class);
-                        startActivity(intent);
-                        connect();
+                        result = connect();
+
+                        if (result[0].equals("failed"))
+                            Toast.makeText(register.this, getString(R.string.check_Internet), Toast.LENGTH_SHORT).show();
+                        if (result[0].equals("registered"))
+                            Toast.makeText(register.this, getString(R.string.register_used), Toast.LENGTH_SHORT).show();
+                        if (result[0].equals("success")) {
+                            Toast.makeText(register.this, getString(R.string.register_success), Toast.LENGTH_SHORT).show();
+                            intent.setClass(register.this, register_information.class);
+                            startActivity(intent);
+                        }
+
+
                         break;
                     }
                 case R.id.button_register_vertification:
@@ -139,6 +155,5 @@ public class register extends Activity {
             }
         }
     };
-
 
 }

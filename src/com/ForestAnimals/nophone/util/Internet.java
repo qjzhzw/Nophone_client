@@ -1,6 +1,5 @@
 package com.ForestAnimals.nophone.util;
 
-import android.util.Log;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -40,23 +39,29 @@ public class Internet {
             httpPost.setEntity(entity);
         }
 
-         /*// 连接超时
-         httpClient.getParams().setParameter(
-                 CoreConnectionPNames.CONNECTION_TIMEOUT, 3000);
-         // 请求超时
-         httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,
-                 3000);*/
-        // 获取HttpResponse实例
-        HttpResponse httpResp = httpClient.execute(httpPost);
-        // 判断是够请求成功
-        if (httpResp.getStatusLine().getStatusCode() == 200) {
-            // 获取返回的数据
-            result = EntityUtils.toString(httpResp.getEntity(), "UTF-8");
-        } else {
-            Log.i("HttpPost", "HttpPost方式请求失败");
+//         // 连接超时
+//         httpClient.getParams().setParameter(
+//                 CoreConnectionPNames.CONNECTION_TIMEOUT, 20000);
+//         // 请求超时
+//         httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,
+//                 20000);
+
+        try {
+            // 获取HttpResponse实例
+            HttpResponse httpResp = httpClient.execute(httpPost);
+            // 判断是够请求成功
+            if (httpResp.getStatusLine().getStatusCode() == 200) {
+                // 获取返回的数据
+                result = EntityUtils.toString(httpResp.getEntity(), "UTF-8");
+            } else {
+                result = null;
+            }
+        } catch (Exception e) {
+            result = null;
         }
 
         return result;
     }
+
 
 }

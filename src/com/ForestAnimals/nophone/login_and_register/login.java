@@ -11,11 +11,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import com.ForestAnimals.nophone.MainActivity;
 import com.ForestAnimals.nophone.R;
-import com.ForestAnimals.nophone.util.FileService;
-import com.ForestAnimals.nophone.util.MusicService;
 import com.ForestAnimals.nophone.help;
-
-import java.io.InputStream;
+import com.ForestAnimals.nophone.util.FileService;
 
 /**
  * Created by dell on 2016/7/9.
@@ -45,7 +42,7 @@ public class login extends Activity {
         setContentView(R.layout.login);
 
         initUI();
-        read_login();
+//        read_login();
 
 //        Intent intentmusic = new Intent(getBaseContext(),MusicService.class);
 //        intentmusic.putExtra("isPlaying", true);
@@ -182,20 +179,20 @@ public class login extends Activity {
     };
 
 
-    public void read_login()
-    //读取信息
-    {
-        try {
-            InputStream inStream_login_identification = login.this.openFileInput("editText_user_identification");
-            InputStream inStream_login_password = login.this.openFileInput("editText_user_password");
-            editText_login_identification.setText(service.read(inStream_login_identification));
-            editText_login_password.setText(service.read(inStream_login_password));
-            //读取信息
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
+//    public void read_login()
+//    //读取信息
+//    {
+//        try {
+//            InputStream inStream_login_identification = login.this.openFileInput("editText_user_identification");
+//            InputStream inStream_login_password = login.this.openFileInput("editText_user_password");
+//            editText_login_identification.setText(service.read(inStream_login_identification));
+//            editText_login_password.setText(service.read(inStream_login_password));
+//            //读取信息
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 
 
     private long exitTime = 0;
