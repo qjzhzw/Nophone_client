@@ -14,11 +14,12 @@ public class MyThread extends Thread {
 
     public List<NameValuePair> params;
     public String url, result;
+    public String url_base = "http://qjzhzw.tunnel.qydev.com/";
     boolean done = false;
 
     public MyThread(List<NameValuePair> params, String url) {
         this.params = params;
-        this.url = url;
+        this.url = url_base + url;
     }
 
 

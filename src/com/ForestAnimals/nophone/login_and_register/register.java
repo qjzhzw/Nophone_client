@@ -66,7 +66,7 @@ public class register extends Activity {
     }
 
     private String[] connect() {
-        String url = "http://qjzhzw.tunnel.qydev.com/information/send_information/";
+        String url = "information/register/";
         //url最后那个‘/’不能少！
 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -89,8 +89,8 @@ public class register extends Activity {
         @Override
         public void onClick(View view) {
             Button button = (Button) view;
-            String result[];
             Intent intent = new Intent();
+            String result[];
             switch (button.getId()) {
                 case R.id.button_register_nextstep:
                     //跳转到下一个注册界面，并保存个人信息
@@ -107,7 +107,7 @@ public class register extends Activity {
                         break;
                     }
                     if (!editText_register_password.getText().toString().equals(editText_register_password_again.getText().toString())) {
-                        Toast.makeText(register.this, getString(R.string.error_password), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(register.this, getString(R.string.not_consistent_password), Toast.LENGTH_SHORT).show();
                         break;
                     }
                     if (editText_register_vertification.getText().toString().length() == 0) {
@@ -129,7 +129,6 @@ public class register extends Activity {
                             intent.setClass(register.this, register_information.class);
                             startActivity(intent);
                         }
-
 
                         break;
                     }

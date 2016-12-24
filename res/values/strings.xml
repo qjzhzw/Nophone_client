@@ -22,12 +22,14 @@
     <string name="no_number">请输入学号</string>
     <string name="no_password">请输入密码</string>
     <string name="no_password_again">请输入确认密码</string>
-    <string name="error_password">密码不一致</string>
+    <string name="not_consistent_password">密码不一致</string>
     <string name="no_vertification">请输入验证码</string>
     <string name="error_vertification">验证码输入错误</string>
     <string name="your_vertification">你获取的验证码为</string>
     <string name="register_success">注册成功，请完善资料</string>
     <string name="register_used">该账号已被注册，请重新输入</string>
+    <string name="not_existed">该账号不存在</string>
+    <string name="error_password">密码输入错误</string>
     <string name="check_Internet">请检查网络连接</string>
     <string name="tree_title">森林树</string>
     <string name="course_title">课程表</string>
