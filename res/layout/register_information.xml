@@ -129,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/editText_register_birthday"
                 android:layout_toRightOf="@+id/imageView_register_birthday"
-                android:layout_marginLeft="60dp"/>
+                android:layout_marginLeft="60dp" android:hint="XXXX-XX-XX"/>
     </RelativeLayout>
     <View
             android:layout_width="match_parent"

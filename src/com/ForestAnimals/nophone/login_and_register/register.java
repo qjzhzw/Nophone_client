@@ -2,6 +2,7 @@ package com.ForestAnimals.nophone.login_and_register;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -62,8 +63,8 @@ public class register extends Activity {
             n[i] = random.nextInt(9);
             n_str += n[i];
         }
-
     }
+
 
     private String[] connect() {
         String url = "information/register/";
@@ -125,6 +126,13 @@ public class register extends Activity {
                         if (result[0].equals("registered"))
                             Toast.makeText(register.this, getString(R.string.register_used), Toast.LENGTH_SHORT).show();
                         if (result[0].equals("success")) {
+                            SharedPreferences information = getSharedPreferences("information", 0);
+                            information.edit().
+                                    putString("identification", editText_register_identification.getText().toString()).
+                                    putString("password", editText_register_password.getText().toString()).
+                                    apply();
+                            //保存用户名和密码到本地
+
                             Toast.makeText(register.this, getString(R.string.register_success), Toast.LENGTH_SHORT).show();
                             intent.setClass(register.this, register_information.class);
                             startActivity(intent);

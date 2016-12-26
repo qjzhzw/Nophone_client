@@ -2,6 +2,7 @@ package com.ForestAnimals.nophone.login_and_register;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -53,6 +54,13 @@ public class login extends Activity {
         button_login.setOnClickListener(listener);
         button_login_register.setOnClickListener(listener);
         button_login_help.setOnClickListener(listener);
+
+        SharedPreferences information = getSharedPreferences("information", 0);
+        String identification = information.getString("identification", "0");
+        String password = information.getString("password", "0");
+        editText_login_identification.setText(identification);
+        editText_login_password.setText(password);
+        //获取账号密码
     }
 
 
@@ -104,6 +112,13 @@ public class login extends Activity {
                         if (result[0].equals("not_matched"))
                             Toast.makeText(login.this, getString(R.string.error_password), Toast.LENGTH_SHORT).show();
                         if (result[0].equals("success")) {
+                            SharedPreferences information = getSharedPreferences("information", 0);
+                            information.edit().
+                                    putString("identification", editText_login_identification.getText().toString()).
+                                    putString("password", editText_login_password.getText().toString()).
+                                    apply();
+                            //保存用户名和密码到本地
+
                             Toast.makeText(login.this, getString(R.string.login_success), Toast.LENGTH_SHORT).show();
                             intent.setClass(login.this, MainActivity.class);
                             startActivity(intent);

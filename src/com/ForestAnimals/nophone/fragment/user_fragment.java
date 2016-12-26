@@ -1,7 +1,7 @@
 package com.ForestAnimals.nophone.fragment;
 
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,8 +15,6 @@ import com.ForestAnimals.nophone.R;
 import com.ForestAnimals.nophone.util.FileService;
 
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 /**
  * Created by MyWorld on 2016/6/12.
@@ -70,11 +68,15 @@ public class user_fragment extends Fragment {
         editText_user_hobby = (EditText) view.findViewById(R.id.editText_user_hobby);
         editText_user_email = (EditText) view.findViewById(R.id.editText_user_email);
 
-        read();//读取文件传来的数据
         enabled_false();//让所有文本框无法编辑
         setAction();//设置事件
         connection();//将下拉框和选项连接起来
         setText();//判断如果为空，设置初始昵称和签名
+
+        SharedPreferences information = getActivity().getSharedPreferences("information", 0);
+        String identification = information.getString("identification", "0");
+        editText_user_nickname.setText(identification);
+        //获取账号密码
 
         button_user_save.setVisibility(View.INVISIBLE);
         button_user_cancel.setVisibility(View.INVISIBLE);
@@ -99,32 +101,12 @@ public class user_fragment extends Fragment {
                 case R.id.button_user_cancel:
                     //返回不可编辑状态
                     enabled_false();
-                    read();
                     editText_user_constellation.setVisibility(View.VISIBLE);
                     spinner_user_constellation.setVisibility(View.INVISIBLE);
                     button_user_save.setVisibility(View.INVISIBLE);
                     button_user_cancel.setVisibility(View.INVISIBLE);
                     break;
                 case R.id.button_user_save:
-                    //保存信息
-                    try {
-                        OutputStream outStream_user_nickname = getActivity().openFileOutput("editText_user_nickname", Context.MODE_PRIVATE);
-                        OutputStream outStream_user_motto = getActivity().openFileOutput("editText_user_motto", Context.MODE_PRIVATE);
-                        OutputStream outStream_user_birthday = getActivity().openFileOutput("editText_user_birthday", Context.MODE_PRIVATE);
-                        OutputStream outStream_user_constellation = getActivity().openFileOutput("editText_user_constellation", Context.MODE_PRIVATE);
-                        OutputStream outStream_user_hobby = getActivity().openFileOutput("editText_user_hobby", Context.MODE_PRIVATE);
-                        OutputStream outStream_user_email = getActivity().openFileOutput("editText_user_email", Context.MODE_PRIVATE);
-                        service.save(outStream_user_nickname, editText_user_nickname.getText().toString());
-                        service.save(outStream_user_motto, editText_user_motto.getText().toString());
-                        service.save(outStream_user_birthday, editText_user_birthday.getText().toString());
-                        service.save(outStream_user_constellation, pro_constellation);
-                        service.save(outStream_user_hobby, editText_user_hobby.getText().toString());
-                        service.save(outStream_user_email, editText_user_email.getText().toString());
-                        //保存信息
-                        Toast.makeText(getActivity(), getString(R.string.save_success), Toast.LENGTH_SHORT).show();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
                     enabled_false();
                     break;
             }
@@ -218,30 +200,6 @@ public class user_fragment extends Fragment {
         imageView_user_head.setEnabled(true);
     }
 
-
-    public void read()
-    //读取信息
-    {
-        try {
-            InputStream inStream_user_nickname = getActivity().openFileInput("editText_user_nickname");
-            InputStream inStream_user_motto = getActivity().openFileInput("editText_user_motto");
-            InputStream inStream_user_sex = getActivity().openFileInput("editText_user_sex");
-            InputStream inStream_user_birhday = getActivity().openFileInput("editText_user_birthday");
-            InputStream inStream_user_constellation = getActivity().openFileInput("editText_user_constellation");
-            InputStream inStream_user_hobby = getActivity().openFileInput("editText_user_hobby");
-            InputStream inStream_user_email = getActivity().openFileInput("editText_user_email");
-            editText_user_nickname.setText(service.read(inStream_user_nickname));
-            editText_user_motto.setText(service.read(inStream_user_motto));
-            imageView_user_sex.setImageResource(R.drawable.user_boy);
-            editText_user_birthday.setText(service.read(inStream_user_birhday));
-            editText_user_constellation.setText(service.read(inStream_user_constellation));
-            editText_user_hobby.setText(service.read(inStream_user_hobby));
-            editText_user_email.setText(service.read(inStream_user_email));
-            //读取信息
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 
     public void setText()
