@@ -18,13 +18,14 @@ import com.ForestAnimals.nophone.course.course_table;
  */
 public class course_fragment extends Fragment {
 
-    private EditText editText_course_number;
-    private EditText editText_course_password;
+    private EditText editText_course_number,
+            editText_course_password;
     private Button button_course_nextstep;
 
-    public void onCreate(Bundle saveInstance){
+    public void onCreate(Bundle saveInstance) {
         super.onCreate(saveInstance);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -55,10 +56,9 @@ public class course_fragment extends Fragment {
                         break;
                     }
                     if (editText_course_password.getText().toString().length() == 0) {
-                        Toast.makeText(getActivity(),  getString(R.string.no_password), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), getString(R.string.no_password), Toast.LENGTH_SHORT).show();
                         break;
-                    }
-                    else {
+                    } else {
                         intent.setClass(getActivity(), course_table.class);
                         startActivity(intent);
                         break;

@@ -222,7 +222,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/editText_register_email"
                 android:layout_toRightOf="@+id/imageView_register_email"
-                android:layout_marginLeft="60dp"/>
+                android:layout_marginLeft="60dp" android:inputType="textEmailAddress"/>
     </RelativeLayout>
     <View
             android:layout_width="match_parent"

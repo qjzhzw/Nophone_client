@@ -1,6 +1,7 @@
 package com.ForestAnimals.nophone.login_and_register;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -67,6 +68,12 @@ public class register extends Activity {
 
 
     private String[] connect() {
+        ProgressDialog progressDialog = new ProgressDialog(register.this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setTitle("连接中");
+        progressDialog.setMessage("正在加载，请稍后");
+        progressDialog.show();
+
         String url = "information/register/";
         //url最后那个‘/’不能少！
 

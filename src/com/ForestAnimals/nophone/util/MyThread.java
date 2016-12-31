@@ -23,6 +23,7 @@ public class MyThread extends Thread {
     }
 
 
+
     public void run() {
         try {
             result = internet.doPost(params, url);
@@ -52,6 +53,8 @@ public class MyThread extends Thread {
                 parse_result[i] = jsonObject.getString(parse_key[i]);
 
         } catch (Exception e) {
+            System.out.println(e);
+
             for (int i = 0; i < parse_key.length; i++)
                 parse_result[i] = "failed";
         }

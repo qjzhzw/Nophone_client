@@ -1,6 +1,7 @@
 package com.ForestAnimals.nophone.login_and_register;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -65,6 +66,12 @@ public class login extends Activity {
 
 
     private String[] connect() {
+        ProgressDialog progressDialog = new ProgressDialog(login.this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setTitle("连接中");
+        progressDialog.setMessage("正在加载，请稍后");
+        progressDialog.show();
+
         String url = "information/login/";
         //url最后那个‘/’不能少！
 
@@ -93,6 +100,7 @@ public class login extends Activity {
             switch (button.getId()) {
                 case R.id.button_login:
                     //跳转到主界面
+
                     if (editText_login_identification.getText().toString().length() == 0) {
                         Toast.makeText(login.this, getString(R.string.no_identfication), Toast.LENGTH_SHORT).show();
                         break;
@@ -139,6 +147,5 @@ public class login extends Activity {
             }
         }
     };
-
 
 }
