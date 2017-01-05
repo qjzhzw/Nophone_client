@@ -10,7 +10,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.*;
 import com.ForestAnimals.nophone.R;
-import com.ForestAnimals.nophone.util.FileService;
+import com.ForestAnimals.nophone.service.FileService;
 import com.ForestAnimals.nophone.util.MyThread;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
