@@ -23,7 +23,6 @@ public class MyThread extends Thread {
     }
 
 
-
     public void run() {
         try {
             result = internet.doPost(params, url);

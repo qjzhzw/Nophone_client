@@ -8,7 +8,7 @@
                  android:theme="@android:style/Theme.Holo.Light.NoActionBar"
                  android:icon="@drawable/icon"
             >
-        <activity android:name=".welcome"
+        <activity android:name=".main.welcome"
                   android:label="@string/app_name"
                   android:screenOrientation="portrait">
             <intent-filter>
@@ -20,7 +20,7 @@
 
         </activity>
 
-        <activity android:name=".test"
+        <activity android:name=".main.test"
                   android:label="@string/app_name"
                   android:screenOrientation="portrait">
         </activity>
@@ -51,13 +51,13 @@
                   android:screenOrientation="portrait">
         </activity>
 
-        <activity android:name=".help"
+        <activity android:name=".main.help"
                   android:label="@string/app_name"
                   android:theme="@android:style/Theme.Holo.Light.Dialog"
                   android:screenOrientation="portrait">
         </activity>
 
-        <activity android:name="com.ForestAnimals.nophone.MainActivity"
+        <activity android:name=".main.MainActivity"
                   android:label="@string/app_name"
                   android:screenOrientation="portrait">
         </activity>
@@ -72,19 +72,19 @@
                      android:theme="@style/myDialogTheme">
         </AlertDialog>
 
-        <service android:name=".util.MusicService"
+        <service android:name=".service.MusicService"
                  android:enabled="true">
         </service>
 
-        <service android:name=".phone_lock.AlarmReceiver_silent"
+        <service android:name=".setting.AlarmReceiver_silent"
                   android:label="@string/app_name">
         </service>
 
         <service
-                android:name=".phone_lock.AlarmReceiver_normal"
+                android:name=".setting.AlarmReceiver_normal"
                 android:label="@string/app_name"/>
 
-        <receiver android:name=".phone_lock.AdminReceiver"
+        <receiver android:name=".setting.AdminReceiver"
                   android:label="@string/app_name"
                   android:description="@string/app_name"
                   android:permission="android.permission.BIND_DEVICE_ADMIN">

@@ -11,8 +11,9 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.*;
 import com.ForestAnimals.nophone.R;
-import com.ForestAnimals.nophone.util.FileService;
+import com.ForestAnimals.nophone.service.FileService;
 import com.ForestAnimals.nophone.util.MyThread;
+import com.ForestAnimals.nophone.util.Util;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
@@ -141,15 +142,24 @@ public class register_information extends Activity {
                 case R.id.button_register_finish:
                     //跳转到登陆界面，并保存个人信息
 
-                    result = connect();
+                    String pattern = "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$";
+                    //通过正则表达式检查生日格式是否输入正确
 
-                    if (result[0].equals("error"))
-                        Toast.makeText(register_information.this, getString(R.string.check_Internet), Toast.LENGTH_SHORT).show();
-                    if (result[0].equals("success")) {
-                        Toast.makeText(register_information.this, getString(R.string.register_OK), Toast.LENGTH_SHORT).show();
-                        intent.setClass(register_information.this, login.class);
-                        startActivity(intent);
+                    if (!new Util().regex(editText_register_birthday.getText().toString(), pattern)) {
+                        Toast.makeText(register_information.this, getString(R.string.check_birthday), Toast.LENGTH_SHORT).show();
                     }
+                    else {
+                        result = connect();
+
+                        if (result[0].equals("error"))
+                            Toast.makeText(register_information.this, getString(R.string.check_Internet), Toast.LENGTH_SHORT).show();
+                        if (result[0].equals("success")) {
+                            Toast.makeText(register_information.this, getString(R.string.register_OK), Toast.LENGTH_SHORT).show();
+                            intent.setClass(register_information.this, login.class);
+                            startActivity(intent);
+                        }
+                    }
+
 
                     break;
             }
@@ -178,7 +188,7 @@ public class register_information extends Activity {
 
 
     class SpinnerXMLSelectedListener_constellation implements AdapterView.OnItemSelectedListener
-    //设置星座部分的下拉列表
+            //设置星座部分的下拉列表
     {
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
         //下拉列表中选择相应项的结果
