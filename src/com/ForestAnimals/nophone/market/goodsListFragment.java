@@ -1,4 +1,4 @@
-package com.ForestAnimals.nophone.goods;
+package com.ForestAnimals.nophone.market;
 
 import android.content.Intent;
 import android.os.Bundle;

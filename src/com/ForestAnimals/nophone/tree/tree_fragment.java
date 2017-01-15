@@ -10,7 +10,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
 import com.ForestAnimals.nophone.R;
-import com.ForestAnimals.nophone.tree.tree_news;
 
 /**
  * Created by MyWorld on 2016/6/12.
@@ -107,17 +106,17 @@ public class tree_fragment extends Fragment {
             Intent intent = new Intent();
             switch (button.getId()) {
                 case R.id.button_tree_bag:
-                    Toast.makeText(getActivity(), getString(R.string.bag), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getString(R.string.not_finished), Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.button_tree_friend:
-                    Toast.makeText(getActivity(), getString(R.string.friend), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getString(R.string.not_finished), Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.button_tree_water:
                     rain_anim();
                     Toast.makeText(getActivity(), getString(R.string.water_success), Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.button_tree_hand:
-                    Toast.makeText(getActivity(), getString(R.string.hand), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getString(R.string.not_finished), Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.button_tree_experiment:
                     int m = Integer.parseInt(editText_tree_experiment.getText().toString());

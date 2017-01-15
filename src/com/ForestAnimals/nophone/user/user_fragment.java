@@ -1,6 +1,5 @@
 package com.ForestAnimals.nophone.user;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -126,12 +125,6 @@ public class user_fragment extends Fragment implements SwipeRefreshLayout.OnRefr
     }
 
     private String[] connect() {
-        ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setTitle("连接中");
-        progressDialog.setMessage("正在加载，请稍后");
-        progressDialog.show();
-
         String url = "information/user/";
         //url最后那个‘/’不能少！
 

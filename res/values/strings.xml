@@ -38,6 +38,7 @@
     <string name="user_title">用户</string>
     <string name="market_title">市场</string>
     <string name="setting_title">设置</string>
+    <string name="not_finished">该功能尚未开放，敬请期待</string>
     <string name="exit_app">再按一次退出程序</string>
 
     <string-array name="constellation">
