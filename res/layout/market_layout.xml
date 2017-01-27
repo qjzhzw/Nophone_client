@@ -51,7 +51,7 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lv.\n还差"
+                android:text="Lv."
                 android:id="@+id/textView_market_Lv"
                 android:layout_marginLeft="18dp" android:layout_alignBaseline="@+id/textView_market_level"
                 android:layout_alignBottom="@+id/textView_market_level"
@@ -61,21 +61,26 @@
                 android:layout_height="wrap_content"
                 android:text="1"
                 android:id="@+id/textView_market_level"
-                android:layout_below="@+id/textView_market_nickname"
-                android:layout_alignRight="@+id/textView_market_Lv"/>
+                android:layout_centerVertical="true" android:layout_toRightOf="@+id/textView_market_Lv"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
                 android:id="@+id/textView_market_experience"
-                android:layout_below="@+id/textView_market_level"
-                android:layout_toRightOf="@+id/textView_market_level" android:layout_marginBottom="10dp"/>
+                android:layout_alignTop="@+id/textView_market_Lv_" android:layout_toRightOf="@+id/textView_market_Lv_"/>
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="经验升级"
                 android:layout_alignTop="@+id/textView_market_experience"
                 android:layout_toRightOf="@+id/textView_market_experience"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="还差"
+                android:id="@+id/textView_market_Lv_"
+                android:layout_below="@+id/textView_market_Lv"
+                android:layout_alignLeft="@+id/textView_market_Lv"/>
 
     </RelativeLayout>
     <LinearLayout

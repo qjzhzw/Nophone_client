@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">上课没疯</string>
-    <string name="water_success">浇水成功，您获得了0.5经验值</string>
+    <string name="water_success">浇水成功，您获得了1点经验值</string>
     <string name="bag">这里是包</string>
     <string name="friend">这里是朋友</string>
     <string name="hand">这里是手</string>
