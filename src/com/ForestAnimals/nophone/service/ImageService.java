@@ -7,7 +7,7 @@ import java.net.URL;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-
+import android.util.Log;
 
 public class ImageService {
 
@@ -26,7 +26,7 @@ public class ImageService {
         URL url = new URL(path);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();//基于HTTP协议连接对象
         conn.setConnectTimeout(5000);
-        conn.setRequestMethod("GET");
+        conn.setRequestMethod("POST");
         if(conn.getResponseCode() == 200){
             InputStream inStream = conn.getInputStream();
             bitmap = BitmapFactory.decodeStream(inStream);
@@ -49,5 +49,31 @@ public class ImageService {
         }
         inStream.close();
         return outStream.toByteArray();
+    }
+
+    /*
+      * 从服务器取图片
+      * 参数：String类型
+      * 返回：Bitmap类型
+      */
+    public static Bitmap getHttpBitmap(String urlpath) {
+        Bitmap bitmap = null;
+        try {
+            //生成一个URL对象
+            URL url = new URL(urlpath);
+            //打开连接
+            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+            conn.setConnectTimeout(6*1000);
+            conn.setDoInput(true);
+            conn.connect();
+            //得到数据流
+            InputStream inputstream = conn.getInputStream();
+            bitmap = BitmapFactory.decodeStream(inputstream);
+            //关闭输入流
+            inputstream.close();
+        } catch (Exception e) {
+            Log.i("MyTag", "error:" + e.toString());
+        }
+        return bitmap;
     }
 }

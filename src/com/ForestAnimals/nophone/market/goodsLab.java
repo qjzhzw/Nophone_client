@@ -1,7 +1,12 @@
 package com.ForestAnimals.nophone.market;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.widget.ImageView;
 import com.ForestAnimals.nophone.util.MyThread;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
@@ -27,10 +32,18 @@ public class goodsLab {
         goods_context = the_goods_context;
         goods_list = new ArrayList<goods>();
         for (int i = 0; i < number; i++) {
-            goods the_goods = new goods();
-            the_goods.setGoods_name(goods[i][0]);
-            the_goods.setLocate_name(goods[i][1]);
-            the_goods.setGold_number(Integer.parseInt(goods[i][3]));
+            final goods the_goods = new goods();
+                        the_goods.setGoods_name(goods[i][0]);
+                the_goods.setLocate_name(goods[i][1]);
+                the_goods.setGold_number(Integer.parseInt(goods[i][3]));
+
+                Glide.with(the_goods_context).load(goods[i][4]).asBitmap().into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                        the_goods.setGoods_picture(resource);
+                    }
+                });
+
             goods_list.add(the_goods);
         }
     }
@@ -59,7 +72,7 @@ public class goodsLab {
         //url最后那个‘/’不能少！
 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("number", String.valueOf(number)));
+//        params.add(new BasicNameValuePair("number", String.valueOf(number)));
 
         MyThread myThread = new MyThread(params, url);
         myThread.start();

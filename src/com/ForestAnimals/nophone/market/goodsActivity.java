@@ -9,6 +9,8 @@ import com.ForestAnimals.nophone.R;
  */
 public class goodsActivity extends FragmentActivity {
     private goods the_goods;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {

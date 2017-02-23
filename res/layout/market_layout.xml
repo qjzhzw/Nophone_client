@@ -25,10 +25,10 @@
                 android:text="200"
                 android:layout_marginRight="3dp"
                 android:layout_height="wrap_content"/>
-        <com.ForestAnimals.nophone.shape.CircleImageView
+        <ImageView
                 android:id="@+id/imageView_user_head"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:src="@drawable/user_head"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"

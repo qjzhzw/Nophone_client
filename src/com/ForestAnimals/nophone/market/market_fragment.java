@@ -7,10 +7,12 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.ForestAnimals.nophone.R;
 import com.ForestAnimals.nophone.user.Person;
 import com.ForestAnimals.nophone.util.MyThread;
+import com.bumptech.glide.Glide;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
@@ -27,6 +29,7 @@ public class market_fragment extends Fragment {
             textView_market_level,
             textView_market_nickname;
     private String identification;
+    private ImageView imageView_user_head;
 
     public void onCreate(Bundle saveInstance) {
         super.onCreate(saveInstance);
@@ -50,23 +53,19 @@ public class market_fragment extends Fragment {
         textView_market_level = (TextView) view.findViewById(R.id.textView_market_level);
         textView_market_money = (TextView) view.findViewById(R.id.textView_market_money);
         textView_market_nickname = (TextView) view.findViewById(R.id.textView_market_nickname);
+        imageView_user_head = (ImageView) view.findViewById(R.id.imageView_user_head);
 
         SharedPreferences information = getActivity().getSharedPreferences("information", 0);
         identification = information.getString("identification", "0");
         //获取账号
 
-        String[] result=connect();
+        String[] result = connect();
         textView_market_nickname.setText(result[0]);
         textView_market_level.setText(result[2]);
         textView_market_money.setText(result[3]);
-        try {
-            textView_market_experience.setText("" + new Person().getExperience_remained
-                    (Integer.parseInt(result[2]), Integer.parseInt(result[4])));
-        }
-        catch (Exception e)
-        {
-            System.out.println(e);
-        }
+        textView_market_experience.setText("" + new Person().getExperience_remained
+                (Integer.parseInt(result[2]), Integer.parseInt(result[4])));
+        Glide.with(getActivity()).load(result[1]).into(imageView_user_head);
 
 
         return view;
@@ -84,7 +83,7 @@ public class market_fragment extends Fragment {
         while (!myThread.isDone()) {
         }
 
-        String[] parse_key = {"nickname","head","level","money","experience"};
+        String[] parse_key = {"nickname", "head", "level", "money", "experience"};
         //需要解析的关键词
 
         return myThread.parseJson(parse_key);
