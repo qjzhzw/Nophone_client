@@ -1,6 +1,7 @@
 package com.ForestAnimals.nophone.market;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
@@ -36,6 +37,11 @@ public class goodsListFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         goods goods = ((goods_adapter) getListAdapter()).getItem(position);
         Intent intent = new Intent(getActivity(), goodsActivity.class);
+
+        SharedPreferences information = getActivity().getSharedPreferences("goods", 0);
+        information.edit().
+                putString("name", goods.getGoods_name()).
+                apply();
 
         startActivity(intent);
     }

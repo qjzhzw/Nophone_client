@@ -24,7 +24,7 @@ public class goodsLab {
     private static goodsLab sGoodsLab;
     private Context goods_context;
 
-    int number = 6;//表示一页显示的商品数量
+    private int number = 10;
     String[][] goods = new String[number][5];
 
     private goodsLab(Context the_goods_context) {
@@ -33,16 +33,16 @@ public class goodsLab {
         goods_list = new ArrayList<goods>();
         for (int i = 0; i < number; i++) {
             final goods the_goods = new goods();
-                        the_goods.setGoods_name(goods[i][0]);
-                the_goods.setLocate_name(goods[i][1]);
-                the_goods.setGold_number(Integer.parseInt(goods[i][3]));
+            the_goods.setGoods_name(goods[i][0]);
+            the_goods.setLocate_name(goods[i][1]);
+            the_goods.setGold_number(Integer.parseInt(goods[i][3]));
 
-                Glide.with(the_goods_context).load(goods[i][4]).asBitmap().into(new SimpleTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                        the_goods.setGoods_picture(resource);
-                    }
-                });
+            Glide.with(the_goods_context).load(goods[i][4]).asBitmap().into(new SimpleTarget<Bitmap>() {
+                @Override
+                public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                    the_goods.setGoods_picture(resource);
+                }
+            });
 
             goods_list.add(the_goods);
         }
@@ -72,7 +72,6 @@ public class goodsLab {
         //url最后那个‘/’不能少！
 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-//        params.add(new BasicNameValuePair("number", String.valueOf(number)));
 
         MyThread myThread = new MyThread(params, url);
         myThread.start();
@@ -82,6 +81,8 @@ public class goodsLab {
         JSONObject jsonObject = null;
         try {
             jsonObject = new JSONObject(myThread.result);
+//            number = Integer.parseInt(jsonObject.getString("number"));
+            System.out.println(number);
             JSONObject[] json = new JSONObject[number];
 
             for (int i = 0; i < number; i++) {

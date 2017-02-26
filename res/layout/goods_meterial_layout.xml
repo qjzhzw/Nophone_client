@@ -10,9 +10,8 @@
         android:orientation="vertical">
 
         <ImageView
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="250dp"
-                android:background="@drawable/huangmenji"
                 android:id="@+id/goods_show_big"
                 />
 
@@ -35,7 +34,7 @@
                 android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/gold_number_textview2"
+                android:id="@+id/gold_number"
                 android:text="200"
                 android:textColor="#000"/>
         <ImageView
@@ -50,7 +49,20 @@
             android:background="#ff2399a3"
             android:layout_height="1dp"/>
         <TextView
-                android:id="@+id/store_"
+                android:id="@+id/goods_explanation"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="奖品说明：免费赠送一杯什么奶茶"
+                android:textSize="20dp"
+                android:paddingLeft="30dp"
+                android:gravity="center_vertical"
+                />
+        <TextView
+                android:layout_width="match_parent"
+                android:background="#ff2399a3"
+                android:layout_height="1dp"/>
+        <TextView
+                android:id="@+id/goods_store"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:text="店铺地址：江南大学北区商业街二楼"
@@ -58,23 +70,16 @@
                 android:paddingLeft="30dp"
                 android:gravity="center_vertical"
                 />
-    <TextView
+        <TextView
             android:layout_width="match_parent"
             android:background="#ff2399a3"
             android:layout_height="1dp"/>
-    <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:text="奖品说明：免费赠送一杯什么奶茶"
-            android:textSize="20dp"
-            android:paddingLeft="30dp"
-            android:gravity="center_vertical"
-            />
-    <TextView
-            android:layout_width="match_parent"
-            android:background="#ff2399a3"
-            android:layout_height="1dp"/>
+        <Button
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:text="兑换"
+                android:id="@+id/goods_change" android:layout_gravity="right" android:background="@drawable/market_lv_white"
+                android:layout_marginTop="60dp" android:layout_marginRight="10dp"/>
 
     </LinearLayout>
 </FrameLayout>

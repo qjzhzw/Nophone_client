@@ -15,7 +15,7 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="版本号：v2.8.6\n\n更新内容：\n1.增加了课程表模块\n2.增加了商店模块\n3.用户界面的保存和取消保存按钮居中\n4.改变了APP开场效果的几张图片的分辨率，并增加了合影\n5.更改了几张初始图片\n6.增加了树的第三阶段（0-10为Lv1，11-100为Lv2，101-500为Lv3）"
+            android:text="版本号：v3.0\n\n更新内容：\n马上就要完成了"
             android:id="@+id/textView_help_update"
             android:background="@null"
             android:textColor="#ff2399a3"
