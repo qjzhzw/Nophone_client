@@ -90,7 +90,6 @@ public class tree_fragment extends Fragment {
         editText_tree_experiment = (EditText) view.findViewById(R.id.editText_tree_experiment);
         button_tree_experiment = (Button) view.findViewById(R.id.button_tree_experiment);
 
-
         int screenWidth = getActivity().getWindowManager().getDefaultDisplay().getWidth();
         ViewGroup.LayoutParams lp = imageView_tree.getLayoutParams();
         lp.width = screenWidth;
@@ -100,12 +99,9 @@ public class tree_fragment extends Fragment {
         imageView_tree.setMaxHeight(screenWidth * 5);
         //设置图片自适应宽高
 
-
         setAction();
-
-        leaf_anim();
-        //树叶会飘动
-
+        judge_level();//判断树是哪一级
+        leaf_anim();//树叶会飘动
 
         return view;
     }
@@ -127,6 +123,28 @@ public class tree_fragment extends Fragment {
         }
 
         String[] parse_key = {"status"};
+        //需要解析的关键词
+
+        return myThread.parseJson(parse_key);
+    }
+
+
+    private String[] connect_level() {
+        SharedPreferences information = getActivity().getSharedPreferences("information", 0);
+        String identification = information.getString("identification", "0");
+
+        String url = "information/tree/";
+        //url最后那个‘/’不能少！
+
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("identification", identification));
+
+        MyThread myThread = new MyThread(params, url);
+        myThread.start();
+        while (!myThread.isDone()) {
+        }
+
+        String[] parse_key = {"level"};
         //需要解析的关键词
 
         return myThread.parseJson(parse_key);
@@ -232,6 +250,27 @@ public class tree_fragment extends Fragment {
 
             }
         });
+    }
+
+
+    private void judge_level()
+    {
+        String[] result = connect_level();
+        int level = Integer.parseInt(result[0]);
+
+        switch (level) {
+            case 1:
+                imageView_tree.setImageResource(R.drawable.tree_lv1);
+                break;
+            case 2:
+                imageView_tree.setImageResource(R.drawable.tree_lv2);
+                break;
+            case 3:
+                imageView_tree.setImageResource(R.drawable.tree_lv3);
+                break;
+            default:
+                break;
+        }
     }
 
 

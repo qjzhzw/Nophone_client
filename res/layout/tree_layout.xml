@@ -38,14 +38,14 @@
                 android:id="@+id/editText_tree_experiment"
                 android:hint="输入你想要的经验值，看如何改变"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"/>
+                android:layout_alignParentLeft="true" android:visibility="invisible"/>
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="看实验效果"
                     android:id="@+id/button_tree_experiment"
                     android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"/>
+                    android:layout_alignParentRight="true" android:visibility="invisible"/>
             <Button
                     android:layout_width="35dp"
                     android:layout_height="30dp"

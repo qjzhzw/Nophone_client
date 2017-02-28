@@ -25,7 +25,7 @@
     <string name="not_consistent_password">密码不一致</string>
     <string name="no_vertification">请输入验证码</string>
     <string name="error_vertification">验证码输入错误</string>
-    <string name="your_vertification">你获取的验证码为</string>
+    <string name="vertification_success">验证码发送成功</string>
     <string name="register_success">注册成功，请完善资料</string>
     <string name="check_birthday">请以XXXX-XX-XX的格式，并有效输入您的生日</string>
     <string name="register_OK">注册完成</string>

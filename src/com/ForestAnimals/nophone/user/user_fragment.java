@@ -95,7 +95,6 @@ public class user_fragment extends Fragment {
         enabled_false();//让所有文本框无法编辑
         setAction();//设置事件
         connection();//将下拉框和选项连接起来
-        setText();//判断如果为空，设置初始昵称和签名
 
         SharedPreferences information = getActivity().getSharedPreferences("information", 0);
         identification = information.getString("identification", "0");
@@ -305,18 +304,6 @@ public class user_fragment extends Fragment {
         editText_user_hobby.setEnabled(true);
         editText_user_email.setEnabled(true);
         imageView_user_head.setEnabled(true);
-    }
-
-
-    public void setText()
-    //设置初始昵称和签名
-    {
-        if (editText_user_nickname.getText().toString().length() == 0) {
-            editText_user_nickname.setText(getString(R.string.my_nickname));
-        }
-        if (editText_user_motto.getText().toString().length() == 0) {
-            editText_user_motto.setText(getString(R.string.no_motto));
-        }
     }
 
 
