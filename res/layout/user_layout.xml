@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/id_swipe_ly"
+    android:background="#2197a1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/id_swipeRefresh"
+        android:scrollbars="vertical"
+        >
+
+
+
+
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:orientation="vertical"
@@ -210,7 +221,7 @@
         <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="@android:color/holo_green_dark"
+
                 />
         <TextView
                 android:layout_width="fill_parent"
@@ -351,5 +362,6 @@
                     android:textColor="#ff2399a3"/>
         </RelativeLayout>
     </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
-</ScrollView>
+</RelativeLayout>

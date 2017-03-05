@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -22,7 +23,8 @@ import java.util.ArrayList;
 public class goodsListFragment extends ListFragment {
 
     private ArrayList<goods> goods_list;
-
+    private goods_adapter adapter;
+    private SwipeRefreshLayout swipeRefreshLayout;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +32,9 @@ public class goodsListFragment extends ListFragment {
 
         goods_list = goodsLab.get(getActivity()).getGoods_list();
 
-        goods_adapter adapter = new goods_adapter(goods_list);
+        adapter = new goods_adapter(goods_list);
         setListAdapter(adapter);
+
     }
 
     public void onListItemClick(ListView l, View v, int position, long id) {
