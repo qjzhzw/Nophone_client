@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,7 @@ import java.util.TimerTask;
  * Created by MyWorld on 2016/6/12.
  */
 public class tree_fragment extends Fragment {
-
+    private SwipeRefreshLayout swipeRefreshLayout;
     private ScrollView scrollView_tree;
     private RelativeLayout relativeLayout_tree_rain;
     private ImageView imageView_tree,
@@ -86,9 +87,13 @@ public class tree_fragment extends Fragment {
         button_tree_friend = (Button) view.findViewById(R.id.button_tree_friend);
         button_tree_water = (Button) view.findViewById(R.id.button_tree_water);
         button_tree_hand = (Button) view.findViewById(R.id.button_tree_hand);
-
+        swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.tree_swiper);
         editText_tree_experiment = (EditText) view.findViewById(R.id.editText_tree_experiment);
         button_tree_experiment = (Button) view.findViewById(R.id.button_tree_experiment);
+
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(android.R.color.holo_blue_bright),
+                getResources().getColor(android.R.color.holo_green_light),getResources().getColor(android.R.color.darker_gray),
+                getResources().getColor(android.R.color.holo_orange_light));
 
         int screenWidth = getActivity().getWindowManager().getDefaultDisplay().getWidth();
         ViewGroup.LayoutParams lp = imageView_tree.getLayoutParams();
@@ -103,6 +108,20 @@ public class tree_fragment extends Fragment {
         judge_level();//判断树是哪一级
         leaf_anim();//树叶会飘动
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        setAction();
+                        judge_level();//判断树是哪一级
+                        leaf_anim();//树叶会飘动
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                },3000);
+            }
+        });
         return view;
     }
 

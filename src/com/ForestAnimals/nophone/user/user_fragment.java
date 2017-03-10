@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
 import android.provider.MediaStore;
@@ -69,12 +70,18 @@ public class user_fragment extends Fragment {
     String pro_constellation;
     String identification;
     String result[];
+    //下拉刷新
+    private static final int REFRESH_COMPLETE = 0X110;
+    private SwipeRefreshLayout swipeRefreshLayout;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.user_layout, container,
                 false);
+
 
         //声明ID集合
         imageView_user_head = (ImageView) view.findViewById(R.id.imageView_user_head);
@@ -91,6 +98,10 @@ public class user_fragment extends Fragment {
         textView_user_level = (TextView) view.findViewById(R.id.textView_user_level);
         textView_user_money = (TextView) view.findViewById(R.id.textView_user_money);
         textView_user_experience = (TextView) view.findViewById(R.id.textView_user_experience);
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.id_swipeRefresh);
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(android.R.color.holo_blue_bright),
+                getResources().getColor(android.R.color.holo_green_light),getResources().getColor(android.R.color.darker_gray),
+                        getResources().getColor(android.R.color.holo_orange_light));
 
         enabled_false();//让所有文本框无法编辑
         setAction();//设置事件
@@ -102,6 +113,22 @@ public class user_fragment extends Fragment {
 
         init();
 
+
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.v("refresh","refresh_________________");
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        init();
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 3000);
+            }
+        });
         return view;
     }
 
@@ -292,7 +319,7 @@ public class user_fragment extends Fragment {
         editText_user_hobby.setEnabled(false);
         editText_user_email.setEnabled(false);
         imageView_user_head.setEnabled(false);
-    }
+}
 
     public void enabled_true()
     //设置文本框可编辑
@@ -338,16 +365,17 @@ public class user_fragment extends Fragment {
 
     /**
      * 获取网落图片资源
+     *
      * @param url
      * @return
      */
-    public static Bitmap getHttpBitmap(String url){
+    public static Bitmap getHttpBitmap(String url) {
         URL myFileURL;
-        Bitmap bitmap=null;
-        try{
+        Bitmap bitmap = null;
+        try {
             myFileURL = new URL(url);
             //获得连接
-            HttpURLConnection conn=(HttpURLConnection)myFileURL.openConnection();
+            HttpURLConnection conn = (HttpURLConnection) myFileURL.openConnection();
             //设置超时时间为6000毫秒，conn.setConnectionTiem(0);表示没有时间限制
             conn.setConnectTimeout(6000);
             //连接设置获得数据流
@@ -362,12 +390,11 @@ public class user_fragment extends Fragment {
             bitmap = BitmapFactory.decodeStream(is);
             //关闭数据流
             is.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return bitmap;
 
     }
-
 }
