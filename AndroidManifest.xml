@@ -30,6 +30,11 @@
                   android:screenOrientation="portrait">
         </activity>
 
+        <activity android:name=".login_and_register.forget_login"
+                  android:label="@string/app_name"
+                  android:screenOrientation="portrait">
+        </activity>
+
         <activity android:name=".login_and_register.register"
                   android:label="@string/app_name"
                   android:screenOrientation="portrait">

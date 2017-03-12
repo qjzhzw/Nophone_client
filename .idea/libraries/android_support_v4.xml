@@ -3,7 +3,6 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/libs/android-support-v4.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/annotations.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/httpmime-4.1.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

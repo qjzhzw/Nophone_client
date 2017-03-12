@@ -20,6 +20,7 @@ import android.view.View.OnClickListener;
 import android.widget.*;
 import com.ForestAnimals.nophone.R;
 import com.ForestAnimals.nophone.login_and_register.login;
+import com.ForestAnimals.nophone.util.Internet;
 import com.ForestAnimals.nophone.util.MyThread;
 
 import org.apache.http.NameValuePair;
@@ -39,14 +40,22 @@ public class course_table extends Activity {
             json_lesson_week,
             json_lesson_classroom,
             json_lesson_name,
-            json_lesson_teacher;
+            json_lesson_teacher,
+            json_lesson_length,
+            json_lesson_Week_Odd_Even,
+            json_lesson_WeekLength_start,
+            json_lesson_WeekLength_end;
 
     public static String[] lesson_time,
             lesson_classroom,
             lesson_name,
             lesson_teacher;
     public static int[] lesson_start,
-            lesson_week;
+            lesson_week,
+            lesson_length,
+            lesson_Week_Odd_Even,
+            lesson_WeekLength_start,
+            lesson_WeekLength_end;
 
     public static String account;
     public static String password;
@@ -58,7 +67,7 @@ public class course_table extends Activity {
     private Button button_course_change;
     private ScrollView scrollView_course;
 
-    //颜色的集合��
+    //颜色的集合
     private int colors[] = {
             Color.rgb(0xee, 0xff, 0xff),
             Color.rgb(0xf0, 0x96, 0x09),
@@ -81,7 +90,7 @@ public class course_table extends Activity {
         Intent get_transfer = getIntent();
         account = get_transfer.getStringExtra("account");
         password = get_transfer.getStringExtra("password");
-        //分别表示周一到周日�����
+        //分别表示周一到周五
         LinearLayout ll1 = (LinearLayout) findViewById(R.id.ll1);
         LinearLayout ll2 = (LinearLayout) findViewById(R.id.ll2);
         LinearLayout ll3 = (LinearLayout) findViewById(R.id.ll3);
@@ -110,14 +119,22 @@ public class course_table extends Activity {
         lesson_classroom = new String[len];
         lesson_name = new String[len];
         lesson_teacher = new String[len];
+        lesson_length = new int[len];
+        lesson_Week_Odd_Even = new int[len];
+        lesson_WeekLength_start = new int[len];
+        lesson_WeekLength_end = new int[len];
         for (int i = 0; i < len; i++) {
             try {
                 lesson_time[i] = (String) json_lesson_time.get(i);
-                lesson_start[i] = (int) json_lesson_start.get(i);
-                lesson_week[i] = (int) json_lesson_week.get(i);
+                lesson_start[i] = (Integer) json_lesson_start.get(i);
+                lesson_week[i] = (Integer) json_lesson_week.get(i);
                 lesson_classroom[i] = (String) json_lesson_classroom.get(i);
                 lesson_name[i] = (String) json_lesson_name.get(i);
                 lesson_teacher[i] = (String) json_lesson_teacher.get(i);
+                lesson_length[i] = (Integer) json_lesson_length.get(i);
+                lesson_Week_Odd_Even[i] = (Integer) json_lesson_Week_Odd_Even.get(i);
+                lesson_WeekLength_start[i] = (Integer) json_lesson_WeekLength_start.get(i);
+                lesson_WeekLength_end[i] = (Integer) json_lesson_WeekLength_end.get(i);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -128,14 +145,18 @@ public class course_table extends Activity {
         System.out.println(json_lesson_classroom);
         System.out.println(json_lesson_name);
         System.out.println(json_lesson_teacher);
+        System.out.println(json_lesson_length);
+        System.out.println(json_lesson_Week_Odd_Even);
+        System.out.println(json_lesson_WeekLength_start);
+        System.out.println(json_lesson_WeekLength_end);
 
 
         //每天的课程设置
-        setCourse(ll1,1);
-        setCourse(ll2,2);
-        setCourse(ll3,3);
-        setCourse(ll4,4);
-        setCourse(ll5,5);
+        setCourse(ll1, 1);
+        setCourse(ll2, 2);
+        setCourse(ll3, 3);
+        setCourse(ll4, 4);
+        setCourse(ll5, 5);
 
 
     }
@@ -276,7 +297,7 @@ public class course_table extends Activity {
         try {
             jsonObject = new JSONObject(myThread.result);
 
-            if(jsonObject.getString("status").equals("error"))
+            if (jsonObject.getString("status").equals("error"))
                 return false;
             else {
                 JSONObject content = jsonObject.getJSONObject("content");
@@ -287,6 +308,10 @@ public class course_table extends Activity {
                 json_lesson_classroom = content.getJSONArray("lesson_classroom");
                 json_lesson_name = content.getJSONArray("lesson_name");
                 json_lesson_teacher = content.getJSONArray("lesson_teacher");
+                json_lesson_length = content.getJSONArray("lesson_length");
+                json_lesson_Week_Odd_Even = content.getJSONArray("lesson_Week_Odd_Even");
+                json_lesson_WeekLength_start = content.getJSONArray("lesson_WeekLength_start");
+                json_lesson_WeekLength_end = content.getJSONArray("lesson_WeekLength_end");
             }
 
         } catch (JSONException e) {
@@ -298,19 +323,16 @@ public class course_table extends Activity {
 
     public void setCourse(LinearLayout ll, int week) {
 
-        int lesson_length = 2;
         int n = 1;//n表示现在进行到的开始节数
-        for(int i = 0;i<json_lesson_time.length();i++)
-        {
+        for (int i = 0; i < json_lesson_time.length(); i++) {
             if (lesson_week[i] == week && !lesson_name[i].equals("null")) {
-                if(lesson_start[i] == n) {
-                    setClass(ll, lesson_name[i], lesson_teacher[i], lesson_classroom[i], lesson_length, (int) (Math.random() * 6)+1);
-                }
-                else {
+                if (lesson_start[i] == n) {
+                    setClass(ll, lesson_name[i], lesson_teacher[i], lesson_classroom[i], lesson_length[i], (int) (Math.random() * 7) + 1);
+                } else {
                     setNoClass(ll, lesson_start[i] - n, 0);
-                    setClass(ll, lesson_name[i], lesson_teacher[i], lesson_classroom[i], lesson_length, (int) (Math.random() * 6)+1);
+                    setClass(ll, lesson_name[i], lesson_teacher[i], lesson_classroom[i], lesson_length[i], (int) (Math.random() * 7) + 1);
                 }
-                n = lesson_start[i] + lesson_length;
+                n = lesson_start[i] + lesson_length[i];
             }
             if (i == json_lesson_time.length() - 1 && n != 13)
                 setNoClass(ll, 13 - n, 0);
