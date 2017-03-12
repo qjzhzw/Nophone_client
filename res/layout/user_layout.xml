@@ -11,6 +11,9 @@
         android:id="@+id/id_swipeRefresh"
         android:scrollbars="vertical"
         >
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
 
@@ -362,6 +365,7 @@
                     android:textColor="#ff2399a3"/>
         </RelativeLayout>
     </LinearLayout>
+        </ScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

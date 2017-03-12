@@ -11,20 +11,20 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:textColor="#ffffff"
-            android:textSize="15sp"/>
+            android:textSize="13sp"/>
     <TextView
             android:id="@+id/course_teacher"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/course_title"
             android:textColor="#ffffff"
-            android:textSize="10sp"/>
+            android:textSize="8sp"/>
     <TextView
             android:id="@+id/course_place"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:textColor="#ffffff"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:gravity="center_horizontal"/>
 </RelativeLayout>
