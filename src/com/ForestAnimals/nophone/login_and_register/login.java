@@ -28,7 +28,10 @@ public class login extends Activity {
     FileService service = new FileService();
 
     private EditText editText_login_identification, editText_login_password;
-    private Button button_login, button_login_register, button_login_help;
+    private Button button_login,
+            button_login_forget,
+            button_login_register,
+            button_login_help;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,16 +52,18 @@ public class login extends Activity {
         editText_login_identification = (EditText) findViewById(R.id.editText_login_identification);
         editText_login_password = (EditText) findViewById(R.id.editText_login_password);
         button_login = (Button) findViewById(R.id.button_login);
+        button_login_forget = (Button) findViewById(R.id.button_login_forget);
         button_login_register = (Button) findViewById(R.id.button_login_register);
         button_login_help = (Button) findViewById(R.id.button_login_help);
 
         button_login.setOnClickListener(listener);
+        button_login_forget.setOnClickListener(listener);
         button_login_register.setOnClickListener(listener);
         button_login_help.setOnClickListener(listener);
 
         SharedPreferences information = getSharedPreferences("information", 0);
-        String identification = information.getString("identification", "0");
-        String password = information.getString("password", "0");
+        String identification = information.getString("identification", null);
+        String password = information.getString("password", null);
         editText_login_identification.setText(identification);
         editText_login_password.setText(password);
         //获取账号密码
@@ -105,12 +110,10 @@ public class login extends Activity {
                         Toast.makeText(login.this, getString(R.string.no_identfication), Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    if(editText_login_password.getText().toString().length()==0)
-                    {
+                    if (editText_login_password.getText().toString().length() == 0) {
                         Toast.makeText(login.this, getString(R.string.no_password), Toast.LENGTH_SHORT).show();
                         break;
-                    }
-                    else {
+                    } else {
                         result = connect();
 
                         if (result[0].equals("failed"))
@@ -134,6 +137,11 @@ public class login extends Activity {
 
                         break;
                     }
+                case R.id.button_login_forget:
+                    //跳转到注册界面
+                    intent.setClass(login.this, forget_login.class);
+                    startActivity(intent);
+                    break;
                 case R.id.button_login_register:
                     //跳转到注册界面
                     intent.setClass(login.this, register.class);

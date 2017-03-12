@@ -4,11 +4,19 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="#ff2399a3">
-    <RelativeLayout
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/market_swiper">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="#ffffffff">
-        <ImageView
+            <ImageView
                 android:id="@+id/gold_imageView"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
@@ -17,103 +25,78 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 />
-        <TextView
-                android:id="@+id/gold_number_textview"
+            <TextView
+                android:id="@+id/textView_market_money"
                 android:layout_toLeftOf="@id/gold_imageView"
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:text="200"
                 android:layout_marginRight="3dp"
                 android:layout_height="wrap_content"/>
-        <com.ForestAnimals.nophone.shape.CircleImageView
+            <ImageView
                 android:id="@+id/imageView_user_head"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:src="@drawable/user_head"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="17dp"/>
-        <TextView
-                android:id="@+id/textView_market_user_name"
+            <TextView
+                android:id="@+id/textView_market_nickname"
                 android:layout_width="wrap_content"
                 android:text="我的昵称"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/textView"
-                android:layout_alignLeft="@+id/textView_market_Lv1"/>
-        <TextView
-                android:layout_toLeftOf="@id/gold_number_textview"
+                android:layout_alignLeft="@+id/textView_market_Lv"/>
+            <TextView
+                android:layout_toLeftOf="@id/textView_market_money"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="5dp"
                 android:layout_width="wrap_content"
                 android:text="金币"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView"/>
-        <TextView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lv."
-                android:id="@+id/textView_market_Lv1"
-                android:layout_below="@+id/textView_market_user_name"
-                android:layout_toRightOf="@+id/imageView_user_head"
-                android:layout_marginLeft="18dp"/>
-        <TextView
+                android:id="@+id/textView_market_Lv"
+                android:layout_marginLeft="18dp" android:layout_alignBaseline="@+id/textView_market_level"
+                android:layout_alignBottom="@+id/textView_market_level"
+                android:layout_toRightOf="@+id/imageView_user_head"/>
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:id="@+id/textView_market_Lv1_num"
-                android:layout_alignBottom="@+id/textView_market_Lv1"
-                android:layout_toRightOf="@+id/textView_market_Lv1"/>
-        <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/FrameLayout_market_Lv"
-                android:layout_alignTop="@+id/textView_market_Lv1_num"
-                android:layout_toRightOf="@+id/textView_market_Lv1_num">
-            <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="25dp"
-                    android:id="@+id/imageView_market_Lv_green"
-                    android:src="@drawable/market_lv_green"/>
-            <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="25dp"
-                    android:id="@+id/imageView_market_Lv_white"
-                    android:layout_alignTop="@+id/textView_market_Lv1_num"
-                    android:layout_toRightOf="@+id/textView_market_Lv1_num"
-                    android:src="@drawable/market_lv_white"
-                    android:adjustViewBounds="false"
-                    android:visibility="invisible"/>
+                android:id="@+id/textView_market_level"
+                android:layout_centerVertical="true" android:layout_toRightOf="@+id/textView_market_Lv"/>
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="350"
-                    android:id="@+id/textView_market_experience"
-                    android:layout_below="@+id/textView_market_user_name"
-                    android:layout_toRightOf="@+id/imageView_user_head"
-                    android:layout_gravity="center"/>
-        </FrameLayout>
-        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lv."
-                android:id="@+id/textView_market_Lv2"
-                android:layout_alignTop="@+id/FrameLayout_market_Lv"
-                android:layout_toRightOf="@+id/FrameLayout_market_Lv"/>
-        <TextView
+                android:text="1"
+                android:id="@+id/textView_market_experience"
+                android:layout_alignTop="@+id/textView_market_Lv_" android:layout_toRightOf="@+id/textView_market_Lv_"/>
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2"
-                android:id="@+id/textView_market_Lv2_num"
-                android:layout_alignTop="@+id/textView_market_Lv2"
-                android:layout_toRightOf="@+id/textView_market_Lv2"/>
+                android:text="经验升级"
+                android:layout_alignTop="@+id/textView_market_experience"
+                android:layout_toRightOf="@+id/textView_market_experience"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="还差"
+                android:id="@+id/textView_market_Lv_"
+                android:layout_below="@+id/textView_market_Lv"
+                android:layout_alignLeft="@+id/textView_market_Lv"/>
 
-    </RelativeLayout>
-    <LinearLayout
+        </RelativeLayout>
+        <LinearLayout
             android:orientation="horizontal"
-            android:background="@android:color/transparent"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        <TextView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -121,7 +104,7 @@
                 android:text="商品"
                 android:textSize="20sp"
                 android:textColor="#ffffffff"/>
-        <TextView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -130,7 +113,7 @@
                 android:textSize="20sp"
                 android:textColor="#ffffffff"
                 />
-        <TextView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -139,13 +122,18 @@
                 android:textSize="20sp"
                 android:textColor="#ffffffff"
                 />
+        </LinearLayout>
+
+
+            <FrameLayout
+
+                android:id="@+id/goods_Fragment_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </FrameLayout>
+
     </LinearLayout>
-    <FrameLayout
-
-            android:id="@+id/goods_Fragment_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-    </FrameLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

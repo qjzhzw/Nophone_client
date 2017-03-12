@@ -70,6 +70,7 @@
                 android:id="@+id/editText_register_password"
                 android:layout_marginLeft="60dp"
                 android:password="true"
+                android:singleLine="true"
                 android:layout_centerVertical="true"/>
         <CheckBox
                 android:layout_width="30dp"
@@ -89,7 +90,7 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginLeft="70dp">
+            android:layout_marginLeft="45dp">
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,7 +105,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/editText_register_password_again"
                 android:layout_toRightOf="@+id/textView_register_password_again"
-                android:password="true"
+                android:singleLine="true"
+            android:password="true"
                 android:layout_centerVertical="true"/>
     </RelativeLayout>
     <View
@@ -116,7 +118,7 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginLeft="70dp">
+            android:layout_marginLeft="60dp">
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -128,7 +130,7 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText_register_vertification"
-                android:layout_marginLeft="60dp"
+                android:layout_marginLeft="70dp"
                 android:layout_centerVertical="true" android:inputType="number"/>
         <Button
                 android:layout_width="60dp"

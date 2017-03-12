@@ -26,7 +26,8 @@
             android:layout_marginLeft="10dp"
             android:id="@+id/goods_imagine"
             android:layout_width="50dp"
-            android:layout_height="50dp" android:src="@drawable/huangmenji"/>
+            android:layout_height="50dp"
+            android:src="@drawable/huangmenji"/>
     <TextView
             android:layout_marginTop="4dp"
             android:id="@+id/goods_item_tilte"

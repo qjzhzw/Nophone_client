@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">上课没疯</string>
-    <string name="water_success">浇水成功，您获得了0.5经验值</string>
+    <string name="water_success">浇水成功，您获得了1点经验值</string>
     <string name="bag">这里是包</string>
     <string name="friend">这里是朋友</string>
     <string name="hand">这里是手</string>
@@ -25,19 +25,22 @@
     <string name="not_consistent_password">密码不一致</string>
     <string name="no_vertification">请输入验证码</string>
     <string name="error_vertification">验证码输入错误</string>
-    <string name="your_vertification">你获取的验证码为</string>
+    <string name="vertification_success">验证码发送成功</string>
     <string name="register_success">注册成功，请完善资料</string>
     <string name="check_birthday">请以XXXX-XX-XX的格式，并有效输入您的生日</string>
     <string name="register_OK">注册完成</string>
     <string name="register_used">该账号已被注册，请重新输入</string>
     <string name="not_existed">该账号不存在</string>
     <string name="error_password">密码输入错误</string>
-    <string name="check_Internet">请检查网络连接</string>
+    <string name="check_Internet">服务器错误</string>
     <string name="tree_title">森林树</string>
     <string name="course_title">课程表</string>
     <string name="user_title">用户</string>
     <string name="market_title">市场</string>
     <string name="setting_title">设置</string>
+    <string name="not_enough">对不起，你的剩余积分不足</string>
+    <string name="change_success">交易成功</string>
+    <string name="not_finished">该功能尚未开放，敬请期待</string>
     <string name="exit_app">再按一次退出程序</string>
 
     <string-array name="constellation">

@@ -68,18 +68,31 @@ public class register extends Activity {
 
 
     private String[] connect() {
-        ProgressDialog progressDialog = new ProgressDialog(register.this);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setTitle("连接中");
-        progressDialog.setMessage("正在加载，请稍后");
-        progressDialog.show();
-
         String url = "information/register/";
         //url最后那个‘/’不能少！
 
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("identification", editText_register_identification.getText().toString()));
         params.add(new BasicNameValuePair("password", editText_register_password.getText().toString()));
+        params.add(new BasicNameValuePair("vertification",editText_register_vertification.getText().toString()));
+
+        MyThread myThread = new MyThread(params, url);
+        myThread.start();
+        while (!myThread.isDone()) {
+        }
+
+        String[] parse_key = {"status"};
+        //需要解析的关键词
+
+        return myThread.parseJson(parse_key);
+    }
+
+    private String[] connect_vertification() {
+        String url = "information/vertification/";
+        //url最后那个‘/’不能少！
+
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("identification", editText_register_identification.getText().toString()));
 
         MyThread myThread = new MyThread(params, url);
         myThread.start();
@@ -122,16 +135,15 @@ public class register extends Activity {
                         Toast.makeText(register.this, getString(R.string.no_vertification), Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    if (!editText_register_vertification.getText().toString().equals(n_str)) {
-                        Toast.makeText(register.this, getString(R.string.error_vertification), Toast.LENGTH_SHORT).show();
-                        break;
-                    } else {
+                    else {
                         result = connect();
 
                         if (result[0].equals("failed"))
                             Toast.makeText(register.this, getString(R.string.check_Internet), Toast.LENGTH_SHORT).show();
                         if (result[0].equals("registered"))
                             Toast.makeText(register.this, getString(R.string.register_used), Toast.LENGTH_SHORT).show();
+                        if (result[0].equals("error"))
+                            Toast.makeText(register.this, getString(R.string.error_vertification), Toast.LENGTH_SHORT).show();
                         if (result[0].equals("success")) {
                             SharedPreferences information = getSharedPreferences("information", 0);
                             information.edit().
@@ -149,8 +161,14 @@ public class register extends Activity {
                     }
                 case R.id.button_register_vertification:
                     //获取验证码
-                    Toast.makeText(register.this, getString(R.string.your_vertification) + n_str, Toast.LENGTH_LONG).show();
-                    break;
+                    result = connect_vertification();
+
+                    if (result[0].equals("failed"))
+                        Toast.makeText(register.this, getString(R.string.check_Internet), Toast.LENGTH_SHORT).show();
+                    if (result[0].equals("success")) {
+                        Toast.makeText(register.this, getString(R.string.vertification_success), Toast.LENGTH_SHORT).show();
+                        break;
+                    }
             }
         }
     };

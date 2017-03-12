@@ -1,25 +1,38 @@
 package com.ForestAnimals.nophone.user;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.ForestAnimals.nophone.R;
+import com.ForestAnimals.nophone.main.MainActivity;
 import com.ForestAnimals.nophone.service.FileService;
+import com.ForestAnimals.nophone.service.ImageService;
 import com.ForestAnimals.nophone.util.MyThread;
+import com.bumptech.glide.Glide;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +40,7 @@ import java.util.List;
 /**
  * Created by MyWorld on 2016/6/12.
  */
-public class user_fragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class user_fragment extends Fragment {
 
     FileService service = new FileService();
 
@@ -57,12 +70,18 @@ public class user_fragment extends Fragment implements SwipeRefreshLayout.OnRefr
     String pro_constellation;
     String identification;
     String result[];
+    //下拉刷新
+    private static final int REFRESH_COMPLETE = 0X110;
+    private SwipeRefreshLayout swipeRefreshLayout;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.user_layout, container,
                 false);
+
 
         //声明ID集合
         imageView_user_head = (ImageView) view.findViewById(R.id.imageView_user_head);
@@ -79,11 +98,14 @@ public class user_fragment extends Fragment implements SwipeRefreshLayout.OnRefr
         textView_user_level = (TextView) view.findViewById(R.id.textView_user_level);
         textView_user_money = (TextView) view.findViewById(R.id.textView_user_money);
         textView_user_experience = (TextView) view.findViewById(R.id.textView_user_experience);
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.id_swipeRefresh);
+        swipeRefreshLayout.setColorSchemeColors(getResources().getColor(android.R.color.holo_blue_bright),
+                getResources().getColor(android.R.color.holo_green_light),getResources().getColor(android.R.color.darker_gray),
+                        getResources().getColor(android.R.color.holo_orange_light));
 
         enabled_false();//让所有文本框无法编辑
         setAction();//设置事件
         connection();//将下拉框和选项连接起来
-        setText();//判断如果为空，设置初始昵称和签名
 
         SharedPreferences information = getActivity().getSharedPreferences("information", 0);
         identification = information.getString("identification", "0");
@@ -91,6 +113,22 @@ public class user_fragment extends Fragment implements SwipeRefreshLayout.OnRefr
 
         init();
 
+
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.v("refresh","refresh_________________");
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        init();
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 3000);
+            }
+        });
         return view;
     }
 
@@ -113,6 +151,7 @@ public class user_fragment extends Fragment implements SwipeRefreshLayout.OnRefr
             imageView_user_sex.setImageResource(R.drawable.user_girl);
             pro_sex = "妹子";
         }
+        Glide.with(getActivity()).load(result[7]).into(imageView_user_head);
 
         HashMap<Object, Integer> constellation = new HashMap<Object, Integer>();
         //将从服务器获取的星座名字和数字相对应
@@ -126,12 +165,6 @@ public class user_fragment extends Fragment implements SwipeRefreshLayout.OnRefr
     }
 
     private String[] connect() {
-        ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setTitle("连接中");
-        progressDialog.setMessage("正在加载，请稍后");
-        progressDialog.show();
-
         String url = "information/user/";
         //url最后那个‘/’不能少！
 
@@ -216,11 +249,6 @@ public class user_fragment extends Fragment implements SwipeRefreshLayout.OnRefr
         }
     };
 
-    @Override
-    public void onRefresh() {
-        //这里写下拉刷新的事件
-    }
-
 
     class SpinnerXMLSelectedListener_constellation implements AdapterView.OnItemSelectedListener
             //设置星座部分的下拉列表
@@ -291,7 +319,7 @@ public class user_fragment extends Fragment implements SwipeRefreshLayout.OnRefr
         editText_user_hobby.setEnabled(false);
         editText_user_email.setEnabled(false);
         imageView_user_head.setEnabled(false);
-    }
+}
 
     public void enabled_true()
     //设置文本框可编辑
@@ -303,18 +331,6 @@ public class user_fragment extends Fragment implements SwipeRefreshLayout.OnRefr
         editText_user_hobby.setEnabled(true);
         editText_user_email.setEnabled(true);
         imageView_user_head.setEnabled(true);
-    }
-
-
-    public void setText()
-    //设置初始昵称和签名
-    {
-        if (editText_user_nickname.getText().toString().length() == 0) {
-            editText_user_nickname.setText(getString(R.string.my_nickname));
-        }
-        if (editText_user_motto.getText().toString().length() == 0) {
-            editText_user_motto.setText(getString(R.string.no_motto));
-        }
     }
 
 
@@ -347,4 +363,38 @@ public class user_fragment extends Fragment implements SwipeRefreshLayout.OnRefr
         });
     }
 
+    /**
+     * 获取网落图片资源
+     *
+     * @param url
+     * @return
+     */
+    public static Bitmap getHttpBitmap(String url) {
+        URL myFileURL;
+        Bitmap bitmap = null;
+        try {
+            myFileURL = new URL(url);
+            //获得连接
+            HttpURLConnection conn = (HttpURLConnection) myFileURL.openConnection();
+            //设置超时时间为6000毫秒，conn.setConnectionTiem(0);表示没有时间限制
+            conn.setConnectTimeout(6000);
+            //连接设置获得数据流
+            conn.setDoInput(true);
+            //不使用缓存
+            conn.setUseCaches(false);
+            //这句可有可无，没有影响
+            //conn.connect();
+            //得到数据流
+            InputStream is = conn.getInputStream();
+            //解析得到图片
+            bitmap = BitmapFactory.decodeStream(is);
+            //关闭数据流
+            is.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return bitmap;
+
+    }
 }

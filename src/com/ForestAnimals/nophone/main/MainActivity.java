@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.ForestAnimals.nophone.R;
 import com.ForestAnimals.nophone.course.course_fragment;
 import com.ForestAnimals.nophone.user.*;
-import com.ForestAnimals.nophone.goods.market_fragment;
+import com.ForestAnimals.nophone.market.market_fragment;
 import com.ForestAnimals.nophone.setting.setting_fragment;
 import com.ForestAnimals.nophone.tree.tree_fragment;
 

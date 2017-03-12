@@ -23,9 +23,9 @@
                 android:layout_marginTop="34dp"
                 android:layout_gravity="center">
         </LinearLayout>
-        <com.ForestAnimals.nophone.shape.CircleImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+        <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:id="@+id/imageView_register_head"
                 android:src="@drawable/user_head"
                 android:layout_gravity="center"/>

@@ -3,7 +3,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-
+<android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/tree_swiper"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/scrollView_tree">
@@ -25,7 +28,7 @@
             android:layout_alignParentLeft="true"/>
 </LinearLayout>
 </ScrollView>
-
+</android.support.v4.widget.SwipeRefreshLayout>
     <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
@@ -38,14 +41,14 @@
                 android:id="@+id/editText_tree_experiment"
                 android:hint="输入你想要的经验值，看如何改变"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"/>
+                android:layout_alignParentLeft="true" android:visibility="invisible"/>
             <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="看实验效果"
                     android:id="@+id/button_tree_experiment"
                     android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"/>
+                    android:layout_alignParentRight="true" android:visibility="invisible"/>
             <Button
                     android:layout_width="35dp"
                     android:layout_height="30dp"

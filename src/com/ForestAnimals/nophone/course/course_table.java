@@ -2,6 +2,7 @@ package com.ForestAnimals.nophone.course;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,16 +13,52 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 import com.ForestAnimals.nophone.R;
+import com.ForestAnimals.nophone.login_and_register.login;
+import com.ForestAnimals.nophone.util.Internet;
+import com.ForestAnimals.nophone.util.MyThread;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class course_table extends Activity {
 
+    public static JSONArray json_lesson_time,
+            json_lesson_start,
+            json_lesson_week,
+            json_lesson_classroom,
+            json_lesson_name,
+            json_lesson_teacher,
+            json_lesson_length,
+            json_lesson_Week_Odd_Even,
+            json_lesson_WeekLength_start,
+            json_lesson_WeekLength_end;
+
+    public static String[] lesson_time,
+            lesson_classroom,
+            lesson_name,
+            lesson_teacher;
+    public static int[] lesson_start,
+            lesson_week,
+            lesson_length,
+            lesson_Week_Odd_Even,
+            lesson_WeekLength_start,
+            lesson_WeekLength_end;
+
+    public static String account;
+    public static String password;
     public static final int NONE = 0;
     public static final int PHOTOHRAPH = 1;// 拍照
     public static final int PHOTOZOOM = 2; // 缩放
@@ -30,7 +67,7 @@ public class course_table extends Activity {
     private Button button_course_change;
     private ScrollView scrollView_course;
 
-    //颜色的集合��
+    //颜色的集合
     private int colors[] = {
             Color.rgb(0xee, 0xff, 0xff),
             Color.rgb(0xf0, 0x96, 0x09),
@@ -50,7 +87,10 @@ public class course_table extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_table);
-        //分别表示周一到周日�����
+        Intent get_transfer = getIntent();
+        account = get_transfer.getStringExtra("account");
+        password = get_transfer.getStringExtra("password");
+        //分别表示周一到周五
         LinearLayout ll1 = (LinearLayout) findViewById(R.id.ll1);
         LinearLayout ll2 = (LinearLayout) findViewById(R.id.ll2);
         LinearLayout ll3 = (LinearLayout) findViewById(R.id.ll3);
@@ -71,33 +111,54 @@ public class course_table extends Activity {
         });
 
 
-        //每天的课程设置����
-        setNoClass(ll1, 2, 0);
-        setClass(ll1, "公民与多元社会", "周叙琪", "EE107", 2, 1);
-        setNoClass(ll1, 1, 0);
-        setClass(ll1, "JAVA应用程序设计", "周智伦", "S305", 3, 2);
-        setClass(ll1, "网络程序设计", "罗嘉宁", "AA201", 3, 3);
-        setNoClass(ll1, 1, 0);
+        connect();
+        int len = json_lesson_time.length();
+        lesson_time = new String[len];
+        lesson_start = new int[len];
+        lesson_week = new int[len];
+        lesson_classroom = new String[len];
+        lesson_name = new String[len];
+        lesson_teacher = new String[len];
+        lesson_length = new int[len];
+        lesson_Week_Odd_Even = new int[len];
+        lesson_WeekLength_start = new int[len];
+        lesson_WeekLength_end = new int[len];
+        for (int i = 0; i < len; i++) {
+            try {
+                lesson_time[i] = (String) json_lesson_time.get(i);
+                lesson_start[i] = (Integer) json_lesson_start.get(i);
+                lesson_week[i] = (Integer) json_lesson_week.get(i);
+                lesson_classroom[i] = (String) json_lesson_classroom.get(i);
+                lesson_name[i] = (String) json_lesson_name.get(i);
+                lesson_teacher[i] = (String) json_lesson_teacher.get(i);
+                lesson_length[i] = (Integer) json_lesson_length.get(i);
+                lesson_Week_Odd_Even[i] = (Integer) json_lesson_Week_Odd_Even.get(i);
+                lesson_WeekLength_start[i] = (Integer) json_lesson_WeekLength_start.get(i);
+                lesson_WeekLength_end[i] = (Integer) json_lesson_WeekLength_end.get(i);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(json_lesson_time);
+        System.out.println(json_lesson_start);
+        System.out.println(json_lesson_week);
+        System.out.println(json_lesson_classroom);
+        System.out.println(json_lesson_name);
+        System.out.println(json_lesson_teacher);
+        System.out.println(json_lesson_length);
+        System.out.println(json_lesson_Week_Odd_Even);
+        System.out.println(json_lesson_WeekLength_start);
+        System.out.println(json_lesson_WeekLength_end);
 
-        setNoClass(ll2, 1, 0);
-        setClass(ll2, "视讯分析与互动技术", "谢朝和", "AA602", 3, 4);
-        setClass(ll2, "班会", "周星文", "EE202", 1, 5);
-        setNoClass(ll2, 7, 0);
 
-        setNoClass(ll3, 1, 0);
-        setClass(ll3, "互动电子技术", "黄世育", "S513", 3, 6);
-        setNoClass(ll3, 1, 0);
-        setClass(ll3, "通讯原理", "高志阳", "S106", 3, 1);
-        setNoClass(ll3, 1, 0);
-        setClass(ll3, "进阶微处理系统", "张嘉文", "AA202", 3, 2);
+        //每天的课程设置
+        setCourse(ll1, 1);
+        setCourse(ll2, 2);
+        setCourse(ll3, 3);
+        setCourse(ll4, 4);
+        setCourse(ll5, 5);
 
-        setNoClass(ll4, 1, 0);
-        setClass(ll4, "作业系统", "李明哲", "S107", 3, 3);
-        setNoClass(ll4, 8, 0);
 
-        setNoClass(ll5, 1, 0);
-        setClass(ll5, "计算机结构", "李开晖", "EE505", 3, 4);
-        setNoClass(ll5, 8, 0);
     }
 
 
@@ -123,7 +184,7 @@ public class course_table extends Activity {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 photo.compress(Bitmap.CompressFormat.JPEG, 75, stream);// (0 -
                 // 100)压缩文件
-                Drawable background =new BitmapDrawable(photo);
+                Drawable background = new BitmapDrawable(photo);
                 scrollView_course.setBackground(background);
             }
 
@@ -218,5 +279,64 @@ public class course_table extends Activity {
     public static int px2dip(Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
+    }
+
+    private boolean connect() {
+        String url = "information/course/";
+
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("account", account));
+        params.add(new BasicNameValuePair("password", password));
+
+        MyThread myThread = new MyThread(params, url);
+        myThread.start();
+        while (!myThread.isDone()) {
+        }
+
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(myThread.result);
+
+            if (jsonObject.getString("status").equals("error"))
+                return false;
+            else {
+                JSONObject content = jsonObject.getJSONObject("content");
+
+                json_lesson_time = content.getJSONArray("lesson_time");
+                json_lesson_start = content.getJSONArray("lesson_start");
+                json_lesson_week = content.getJSONArray("lesson_week");
+                json_lesson_classroom = content.getJSONArray("lesson_classroom");
+                json_lesson_name = content.getJSONArray("lesson_name");
+                json_lesson_teacher = content.getJSONArray("lesson_teacher");
+                json_lesson_length = content.getJSONArray("lesson_length");
+                json_lesson_Week_Odd_Even = content.getJSONArray("lesson_Week_Odd_Even");
+                json_lesson_WeekLength_start = content.getJSONArray("lesson_WeekLength_start");
+                json_lesson_WeekLength_end = content.getJSONArray("lesson_WeekLength_end");
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return true;
+    }
+
+    public void setCourse(LinearLayout ll, int week) {
+
+        int n = 1;//n表示现在进行到的开始节数
+        for (int i = 0; i < json_lesson_time.length(); i++) {
+            if (lesson_week[i] == week && !lesson_name[i].equals("null")) {
+                if (lesson_start[i] == n) {
+                    setClass(ll, lesson_name[i], lesson_teacher[i], lesson_classroom[i], lesson_length[i], (int) (Math.random() * 7) + 1);
+                } else {
+                    setNoClass(ll, lesson_start[i] - n, 0);
+                    setClass(ll, lesson_name[i], lesson_teacher[i], lesson_classroom[i], lesson_length[i], (int) (Math.random() * 7) + 1);
+                }
+                n = lesson_start[i] + lesson_length[i];
+            }
+            if (i == json_lesson_time.length() - 1 && n != 13)
+                setNoClass(ll, 13 - n, 0);
+        }
+
     }
 }
