@@ -57,8 +57,8 @@ public class login extends Activity {
         button_login_help.setOnClickListener(listener);
 
         SharedPreferences information = getSharedPreferences("information", 0);
-        String identification = information.getString("identification", "0");
-        String password = information.getString("password", "0");
+        String identification = information.getString("identification", null);
+        String password = information.getString("password", null);
         editText_login_identification.setText(identification);
         editText_login_password.setText(password);
         //获取账号密码

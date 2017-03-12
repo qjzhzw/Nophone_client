@@ -32,7 +32,7 @@
     <string name="register_used">该账号已被注册，请重新输入</string>
     <string name="not_existed">该账号不存在</string>
     <string name="error_password">密码输入错误</string>
-    <string name="check_Internet">请检查网络连接</string>
+    <string name="check_Internet">服务器错误</string>
     <string name="tree_title">森林树</string>
     <string name="course_title">课程表</string>
     <string name="user_title">用户</string>

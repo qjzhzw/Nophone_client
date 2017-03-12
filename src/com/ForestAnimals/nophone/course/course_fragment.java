@@ -1,6 +1,7 @@
 package com.ForestAnimals.nophone.course;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import com.ForestAnimals.nophone.course.course_table;
  * 森林树的页面
  */
 public class course_fragment extends Fragment {
+
 
     private EditText editText_course_number,
             editText_course_password;
@@ -40,6 +42,13 @@ public class course_fragment extends Fragment {
 
         button_course_nextstep.setOnClickListener(listener);
 
+        SharedPreferences information = getActivity().getSharedPreferences("course", 0);
+        String account = information.getString("account", null);
+        String password = information.getString("password", null);
+        editText_course_number.setText(account);
+        editText_course_password.setText(password);
+        //获取账号密码
+
         return view;
     }
 
@@ -59,6 +68,14 @@ public class course_fragment extends Fragment {
                         Toast.makeText(getActivity(), getString(R.string.no_password), Toast.LENGTH_SHORT).show();
                         break;
                     } else {
+                        SharedPreferences information = getActivity().getSharedPreferences("course", 0);
+                        information.edit().
+                                putString("account", editText_course_number.getText().toString()).
+                                putString("password", editText_course_password.getText().toString()).
+                                apply();
+
+                        intent.putExtra("account",editText_course_number.getText().toString());
+                        intent.putExtra("password",editText_course_password.getText().toString());
                         intent.setClass(getActivity(), course_table.class);
                         startActivity(intent);
                         break;
